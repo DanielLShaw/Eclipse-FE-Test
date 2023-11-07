@@ -64,6 +64,19 @@ _Required logic_
 - Only the product(s) with the highest rating should have the ‘Eclipse recommended’ badge, pink border, the price in red and the ‘Save £xxx’ badge
   - just sort the list by rating and find the productId so it can get highlighted
 
+## Planned approach
+
+1. investigate dummy data api (to gather if it can filter/sort server side)
+1. get product list
+1. filter out brand = Apple
+1. randomise
+1. sort by review score
+1. display 10
+1. sort out caching with react-query
+1. refetching
+1. mobile UI implementation
+1. desktop UI implementation
+
 ## Mid implementation thoughts and decisions
 
 `TDB`
