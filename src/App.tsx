@@ -1,12 +1,7 @@
-import List from "./components/List"
+import List from './components/List'
 
-function App() {
-
+export default function App() {
   return (
-    <>
-      <List />
-    </>
+    <List />
   )
 }
-
-export default App
