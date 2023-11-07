@@ -4,11 +4,11 @@ Dan Shaw's submission to Eclipse's front end interview tech test.
 
 ## How to install
 
-`TBD`
+`npm install`
 
 ## How to run
 
-`TBD`
+`npm run dev`
 
 ## Thoughts on brief
 
