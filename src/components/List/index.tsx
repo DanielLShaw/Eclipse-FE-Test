@@ -4,10 +4,13 @@ import { type ReactNode } from 'react'
 
 export default function List(): ReactNode {
   // grab products
-  const { data: rawResponse } = useQuery({
+  const { data: rawResponse, dataUpdatedAt, isStale } = useQuery({
     queryKey: ['products'],
     queryFn: getAllProducts,
-    staleTime: 3 * 60 * 1000
+    staleTime: 3 * 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false
   })
 
   // filter out brand = Apple
@@ -24,5 +27,10 @@ export default function List(): ReactNode {
   // choose first 10
   const displayedProducts = sortedProducts?.slice(0, 9)
 
-  return <pre>{JSON.stringify(displayedProducts, null, 2)}</pre>
+  return <div>
+    <pre>Last Updated {new Date(dataUpdatedAt).toISOString()}</pre>
+    <pre>Stale? {isStale ? 'Y' : 'N'}</pre>
+
+    <pre>{JSON.stringify(displayedProducts, null, 2)}</pre>
+  </div>
 }
