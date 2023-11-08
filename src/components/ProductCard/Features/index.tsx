@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CheckIcon from "../../../assets/icons/check";
+import CheckIcon from "../../../assets/icons/CheckIcon";
 import classNames from "classnames";
 
 const Wrap = styled.div`

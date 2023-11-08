@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CartIcon from "../../../assets/icons/cart";
+import CartIcon from "../../../assets/icons/CartIcon";
 
 interface CTAProps {
   text: string;

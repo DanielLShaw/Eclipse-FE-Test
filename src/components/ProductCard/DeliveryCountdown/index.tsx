@@ -5,9 +5,9 @@ import {
   Duration,
   isAfter,
 } from "date-fns";
-import TruckIcon from "../../../assets/icons/truck";
+import TruckIcon from "../../../assets/icons/TruckIcon";
 import styled from "styled-components";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const Wrap = styled.div`
   display: flex;
