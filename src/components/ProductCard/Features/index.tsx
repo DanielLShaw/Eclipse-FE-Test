@@ -4,7 +4,6 @@ import CheckIcon from "../../../assets/icons/check";
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
 `;
 
 const FeatureWrap = styled.div`
