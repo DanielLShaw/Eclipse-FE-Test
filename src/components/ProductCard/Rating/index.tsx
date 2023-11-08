@@ -1,15 +1,62 @@
 import { Product } from "../../../types/product.types";
+import styled from "styled-components";
+import { CSSProperties } from "react";
 
 interface RatingProps {
   rating: Product["rating"];
   reviews?: number;
 }
 
-export default function Rating({ rating, reviews }: RatingProps) {
+const Wrap = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;
+
+// based off: https://css-tricks.com/five-methods-for-five-star-ratings/
+const Stars = styled.div`
+  --star-color: var(--Yellow);
+  --star-background: lightgrey;
+
+  --percent: calc(var(--rating-value, 0) / var(--rating-max, 5) * 100%);
+
+  display: inline-block;
+  font-family: Times;
+  font-size: 28px;
+  line-height: 1;
+
+  &::before {
+    content: "★★★★★";
+    letter-spacing: 0px;
+    background: linear-gradient(
+      90deg,
+      var(--star-color) var(--percent),
+      var(--star-background) var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
+
+const Reviews = styled.span`
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+`;
+
+export default function Rating({ rating = 0, reviews = 0 }: RatingProps) {
+  const starStyle = {
+    "--rating-value": rating,
+    "--rating-max": 5,
+  } as CSSProperties;
   return (
-    <div>
-      <span>{rating}/ 5</span>
-      <span>{reviews ?? "XX"} Reviews</span>
-    </div>
+    <Wrap>
+      <Stars style={starStyle} title={`${rating}/5 rating`} />
+      <Reviews>{reviews} Reviews</Reviews>
+    </Wrap>
   );
 }
