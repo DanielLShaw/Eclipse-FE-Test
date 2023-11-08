@@ -10,19 +10,19 @@ const ListWrap = styled.div`
   gap: 18px;
 `;
 
+const dataRetentionMilli = 3 * 60 * 1000;
+
 export default function List(): ReactNode {
   // grab products
   const {
     data: rawResponse,
-    // dataUpdatedAt,
+    dataUpdatedAt,
     // isStale
   } = useQuery({
     queryKey: ["products"],
     queryFn: getAllProducts,
-    staleTime: 3 * 60 * 1000,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    refetchOnReconnect: false,
+    staleTime: dataRetentionMilli,
+    gcTime: dataRetentionMilli,
   });
 
   // filter out brand = Apple
@@ -38,11 +38,14 @@ export default function List(): ReactNode {
 
   // choose first 10
   const displayedProducts = sortedProducts?.slice(0, 10);
-
   return (
     <ListWrap>
       {displayedProducts?.map((item) => (
-        <ProductCard key={item.id} item={item} />
+        <ProductCard
+          key={item.id}
+          item={item}
+          deliveryCutoffTime={dataUpdatedAt + dataRetentionMilli}
+        />
       ))}
     </ListWrap>
   );

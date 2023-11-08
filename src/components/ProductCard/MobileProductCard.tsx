@@ -19,10 +19,12 @@ const ItemWrap = styled.div`
 
 interface ProductCardProps {
   item: Product;
+  deliveryCutoffTime: number;
 }
 
 export default function MobileProductCard({
   item,
+  deliveryCutoffTime,
 }: ProductCardProps): ReactNode {
   const {
     id,
@@ -43,8 +45,6 @@ export default function MobileProductCard({
     .fill("")
     .map(() => faker.lorem.words({ min: 2, max: 6 }));
 
-  console.log(features);
-
   return (
     <ItemWrap data-id={id}>
       <Title>{title}</Title>
@@ -56,7 +56,7 @@ export default function MobileProductCard({
       <Features features={features} />
       <PriceDisplay nowPrice={price} discountPercentage={discountPercentage} />
       <StockDisplay stock={stock} />
-      <DeliveryCountdown />
+      <DeliveryCountdown cutOffTime={deliveryCutoffTime} />
       <CTA text="ADD TO BASKET" onClick={handleCTAClick} />
     </ItemWrap>
   );
