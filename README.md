@@ -79,8 +79,37 @@ _Required logic_
 
 ## Mid implementation thoughts and decisions
 
-`TDB`
+I got too into it and forgot to actually note any down!
 
 ## Post implementation thoughts
 
-`TBD`
+Overall I am pleased with the end result but overall I spent slighty more time than I had anticipated.
+
+I would revisit the following if I had more time:
+
+### Responsiveness
+
+I threw some functional, but basic responsiveness together at 800px wide, but with more time, there would be several more breakpoints and designs to cater for a wider range of devices.
+
+### Data fetching
+
+I feel that I havent actually fulfilled this completely. Although `react-query` does a lot of the heavy lifting in terms of caching the response, I was asked to control what was stored ( react-query saves the entire response ), and also randomise the response on subsequent requests.
+
+If I were to spend more time on it, would have removed `react-query` and done it with basic fetch apis.
+
+Rough outline of the approach I could have taken:
+
+1. fetch data with `skip`\* set to 0 (fetching the first 10 products)
+1. store `productList` , `expiryDate` and `skip`\ in localStorage
+1. use `expiryDate` to change the countdown clock
+1. on page refresh, check if `skip` and `expiryDate` have been set in localStorage
+   - if available and expiryDate is before current time, generate a new value for `skip`. this would be a number between 0 and 290 (as there seems to be 300 items in the dummydata endpoint)
+   - if available but expiryDate is after current time, retrieve `productList`
+
+\* `skip` is the pointer used in the dummyjson endpoint to indicate where you want to grab the product list from. Randomising this between 0 and 290 should give a new list of items back, albeit always in the same order. If the products then needed to be even more random, the product list array could have been shuffled.
+
+### ‘Eclipse recommended’ badge
+
+Re-reading the brief, it states that there could be multiple products with the same high rating. My implementation is very coarse and just highlights the first element in the list, as it was sorted by rating anyways.
+
+To allow more than one, I would access the list and gather the highest rating, then check the products rating against that to achieve the request result.
