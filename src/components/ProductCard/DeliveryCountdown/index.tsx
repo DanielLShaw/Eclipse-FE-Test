@@ -7,7 +7,7 @@ import {
 } from "date-fns";
 import TruckIcon from "../../../assets/icons/truck";
 import styled from "styled-components";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const Wrap = styled.div`
   display: flex;
@@ -32,28 +32,28 @@ export default function DeliveryCountdown({
     seconds: 0,
   });
 
-  const [cutoffPassed, setCutoffPassed] = useState(true);
+  const [cutoffPassed, setCutoffPassed] = useState(false);
+
+  const checkTimeLeft = useCallback(() => {
+    setTimeLeft(
+      intervalToDuration({
+        // takes 2 dates and returns an object with hours minutes seconds between dates
+        start: new Date(),
+        end: new Date(cutOffTime),
+      })
+    );
+
+    setCutoffPassed(isAfter(new Date(), new Date(cutOffTime)));
+  }, [cutOffTime]);
 
   useEffect(() => {
-    let interval: number;
-    if (cutOffTime > 0) {
-      interval = setInterval(() => {
-        setTimeLeft(
-          intervalToDuration({
-            // takes 2 dates and returns an object with hours minutes seconds between dates
-            start: new Date(),
-            end: new Date(cutOffTime),
-          })
-        );
-
-        setCutoffPassed(isAfter(new Date(), new Date(cutOffTime)));
-      }, 1000);
-    }
+    checkTimeLeft();
+    const interval = setInterval(checkTimeLeft, 1000);
 
     () => {
       clearInterval(interval);
     };
-  }, [cutOffTime]);
+  }, [checkTimeLeft]);
 
   const deliveryDay = format(startOfTomorrow(), "do MMMM");
 
