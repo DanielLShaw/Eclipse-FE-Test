@@ -12,6 +12,7 @@ import DeliveryCountdown from "./DeliveryCountdown";
 import CTA from "./CTA";
 import StockDisplay from "./StockDisplay";
 import Images from "./Images";
+import DesktopActions from "./DesktopActions";
 
 const ItemWrap = styled(CardWrap)`
   display: grid;
@@ -32,6 +33,7 @@ const RightColumn = styled.div`
 
 const StyledFeatures = styled(Features)`
   padding-top: 24px;
+  flex: 1;
 `;
 
 const DeliveryFeatures = styled(Features)`
@@ -93,6 +95,7 @@ export default function DesktopProductCard({
         <Title>{title}</Title>
         <Rating rating={rating} />
         <StyledFeatures features={features} />
+        <DesktopActions />
       </CenterColumn>
       <RightColumn>
         <PriceAndStock>
