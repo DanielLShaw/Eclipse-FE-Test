@@ -54,9 +54,13 @@ export default function Rating({ rating = 0, reviews = 0 }: RatingProps) {
     "--rating-max": 5,
   } as CSSProperties;
   return (
-    <Wrap>
-      <Stars style={starStyle} title={`${rating}/5 rating`} />
-      <Reviews>{reviews} Reviews</Reviews>
+    <Wrap className="rating">
+      <Stars
+        className="rating__stars"
+        style={starStyle}
+        title={`${rating}/5 rating`}
+      />
+      <Reviews className="rating__reviews">{reviews} Reviews</Reviews>
     </Wrap>
   );
 }

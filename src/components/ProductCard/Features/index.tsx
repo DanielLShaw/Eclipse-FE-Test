@@ -23,9 +23,9 @@ const StyledCheckIcon = styled(CheckIcon)`
 
 export default function Features({ features }: { features: string[] }) {
   return (
-    <Wrap>
+    <Wrap className="features">
       {features?.map((feature) => (
-        <FeatureWrap key={feature}>
+        <FeatureWrap key={feature} className="features__feature">
           <StyledCheckIcon /> <Feature>{feature}</Feature>
         </FeatureWrap>
       ))}
