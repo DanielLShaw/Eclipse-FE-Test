@@ -1,2 +1,8 @@
 :root {
+  --Charcoal: #333;
+
+  --title-font-family: "Roboto", sans-serif;
+  --text-font-family: "Open Sans", sans-serif;
+
+  font-family: var(--text-font-family);
 }

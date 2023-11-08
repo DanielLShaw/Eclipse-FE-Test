@@ -1,13 +1,6 @@
-import { type ReactNode } from "react";
-import { type Product } from "../../types/product.types";
-import styled from "styled-components";
+import { Product } from "../../types/product.types";
+import MobileProductCard from "./MobileProductCard";
 
-const ItemWrap = styled.div``;
-
-interface ProductCardProps {
-  item: Product;
-}
-
-export default function ProductCard({ item }: ProductCardProps): ReactNode {
-  return <ItemWrap>{item.title}</ItemWrap>;
+export default function ProductCard({ item }: { item: Product }) {
+  return <MobileProductCard item={item} />;
 }
