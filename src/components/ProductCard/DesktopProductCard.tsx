@@ -34,6 +34,12 @@ const StyledFeatures = styled(Features)`
   padding-top: 24px;
 `;
 
+const DeliveryFeatures = styled(Features)`
+  .features__feature {
+    gap: 19px;
+  }
+`;
+
 const PriceAndStock = styled.div`
   flex: 1;
 
@@ -98,6 +104,9 @@ export default function DesktopProductCard({
         </PriceAndStock>
         <Delivery>
           <DeliveryCountdown cutOffTime={deliveryCutoffTime} />
+          <DeliveryFeatures
+            features={["Free UK Delivery", "PayPal credit available"]}
+          />
         </Delivery>
 
         <CTA text="ADD TO BASKET" onClick={handleCTAClick} />
