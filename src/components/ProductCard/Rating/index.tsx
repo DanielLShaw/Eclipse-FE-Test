@@ -39,13 +39,10 @@ const Stars = styled.div`
 `;
 
 const Reviews = styled.span`
-  font-feature-settings:
-    "clig" off,
-    "liga" off;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 26px; /* 162.5% */
+  line-height: 26px;
 `;
 
 export default function Rating({ rating = 0, reviews = 0 }: RatingProps) {

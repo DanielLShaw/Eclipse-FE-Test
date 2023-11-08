@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { type Product } from "../../types/product.types";
 import styled from "styled-components";
 import Rating from "./Rating";
-import { Title, CardWrap } from "./Common";
+import { CardWrap, Title } from "./Common";
 import Features from "./Features";
 import PriceDisplay from "./PriceDisplay";
 import DeliveryCountdown from "./DeliveryCountdown";
@@ -14,10 +14,35 @@ import StockDisplay from "./StockDisplay";
 import Images from "./Images";
 
 const ItemWrap = styled(CardWrap)`
+  display: grid;
+  grid-template-columns: 350px 1fr minmax(250px, 1fr);
+  gap: 14px;
+`;
+
+const CenterColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledFeatures = styled(Features)`
+  padding-top: 24px;
+`;
+
+const PriceAndStock = styled.div`
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+const Delivery = styled.div`
+  margin-bottom: 36px;
 `;
 
 interface ProductCardProps {
@@ -26,7 +51,7 @@ interface ProductCardProps {
   recommended: boolean;
 }
 
-export default function MobileProductCard({
+export default function DesktopProductCard({
   item,
   deliveryCutoffTime,
   recommended,
@@ -52,20 +77,31 @@ export default function MobileProductCard({
 
   return (
     <ItemWrap data-id={id} className={classNames("item", { recommended })}>
-      <Title>{title}</Title>
-      <Rating rating={rating} />
       <Images
         productSrc={images[0]}
         logoSrc={undefined}
         brandName={brand}
         productName={title}
       />
+      <CenterColumn>
+        <Title>{title}</Title>
+        <Rating rating={rating} />
+        <StyledFeatures features={features} />
+      </CenterColumn>
+      <RightColumn>
+        <PriceAndStock>
+          <PriceDisplay
+            nowPrice={price}
+            discountPercentage={discountPercentage}
+          />
+          <StockDisplay stock={stock} />
+        </PriceAndStock>
+        <Delivery>
+          <DeliveryCountdown cutOffTime={deliveryCutoffTime} />
+        </Delivery>
 
-      <Features features={features} />
-      <PriceDisplay nowPrice={price} discountPercentage={discountPercentage} />
-      <StockDisplay stock={stock} />
-      <DeliveryCountdown cutOffTime={deliveryCutoffTime} />
-      <CTA text="ADD TO BASKET" onClick={handleCTAClick} />
+        <CTA text="ADD TO BASKET" onClick={handleCTAClick} />
+      </RightColumn>
     </ItemWrap>
   );
 }

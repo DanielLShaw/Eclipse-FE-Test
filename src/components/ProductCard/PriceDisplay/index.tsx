@@ -25,9 +25,15 @@ const WasPrice = styled.span`
 `;
 const NowPriceWrap = styled.div`
   display: flex;
+  flex-direction: column;
+
   gap: 8px;
-  align-items: center;
   line-height: 32px;
+
+  @media (max-width: 800px) {
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 const NowPrice = styled.span`
   color: var(--Red);
@@ -35,6 +41,7 @@ const NowPrice = styled.span`
   font-weight: 500;
 `;
 const Discount = styled.span`
+  width: fit-content;
   color: var(--Red);
   background-color: #ed143d33;
   border-radius: 4px;

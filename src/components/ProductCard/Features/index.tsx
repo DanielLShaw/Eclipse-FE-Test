@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import CheckIcon from "../../../assets/icons/check";
+import classNames from "classnames";
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 4px;
 `;
 
 const FeatureWrap = styled.div`
@@ -18,11 +20,18 @@ const Feature = styled.span`
 
 const StyledCheckIcon = styled(CheckIcon)`
   width: 11px;
+  height: 11px;
 `;
 
-export default function Features({ features }: { features: string[] }) {
+export default function Features({
+  features,
+  className,
+}: {
+  features: string[];
+  className?: string;
+}) {
   return (
-    <Wrap className="features">
+    <Wrap className={classNames("features", className)}>
       {features?.map((feature) => (
         <FeatureWrap key={feature} className="features__feature">
           <StyledCheckIcon /> <Feature>{feature}</Feature>
