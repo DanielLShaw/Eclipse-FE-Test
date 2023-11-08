@@ -40,11 +40,12 @@ export default function List(): ReactNode {
   const displayedProducts = sortedProducts?.slice(0, 10);
   return (
     <ListWrap>
-      {displayedProducts?.map((item) => (
+      {displayedProducts?.map((item, index) => (
         <ProductCard
           key={item.id}
           item={item}
           deliveryCutoffTime={dataUpdatedAt + dataRetentionMilli}
+          recommended={index === 0}
         />
       ))}
     </ListWrap>

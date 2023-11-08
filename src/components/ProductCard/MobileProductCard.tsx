@@ -1,5 +1,6 @@
 import { type ReactNode } from "react";
 import { faker } from "@faker-js/faker";
+import classNames from "classnames";
 
 import { type Product } from "../../types/product.types";
 import styled from "styled-components";
@@ -21,6 +22,12 @@ const ItemWrap = styled.div`
   background: white;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.12);
   padding: 27px 20px;
+  border: 2px solid transparent;
+
+  &.recommended {
+    border-color: var(--Charcoal-Gradient, #333);
+    box-shadow: 0px 0px 20px 0px #e61577;
+  }
 `;
 
 const Images = styled.div`
@@ -33,11 +40,13 @@ const Images = styled.div`
 interface ProductCardProps {
   item: Product;
   deliveryCutoffTime: number;
+  recommended: boolean;
 }
 
 export default function MobileProductCard({
   item,
   deliveryCutoffTime,
+  recommended,
 }: ProductCardProps): ReactNode {
   const {
     id,
@@ -59,7 +68,7 @@ export default function MobileProductCard({
     .map(() => faker.lorem.words({ min: 2, max: 6 }));
 
   return (
-    <ItemWrap data-id={id}>
+    <ItemWrap data-id={id} className={classNames("item", { recommended })}>
       <Title>{title}</Title>
       <Rating rating={rating} />
       <Images>
