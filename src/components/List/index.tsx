@@ -7,7 +7,7 @@ import ProductCard from "../ProductCard";
 const ListWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
 `;
 
 const dataRetentionMilli = 3 * 60 * 1000;

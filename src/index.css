@@ -10,3 +10,7 @@
 
   font-family: var(--text-font-family);
 }
+
+html {
+  background-color: #fefefe;
+}
