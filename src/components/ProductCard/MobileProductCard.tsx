@@ -15,6 +15,19 @@ const ItemWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 14px;
+
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.12);
+  padding: 27px 20px;
+`;
+
+const Images = styled.div`
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
 `;
 
 interface ProductCardProps {
@@ -29,12 +42,12 @@ export default function MobileProductCard({
   const {
     id,
     title = "Product title",
-    description = "",
     discountPercentage = 0,
     images = [],
     price = 0,
     rating = 0,
     stock = 0,
+    brand,
   } = item;
 
   const handleCTAClick = () => {
@@ -49,10 +62,17 @@ export default function MobileProductCard({
     <ItemWrap data-id={id}>
       <Title>{title}</Title>
       <Rating rating={rating} />
-      <Image
-        src={images?.[0] ?? "/images/fallback.svg"}
-        alt={`image for product ${title}`}
-      />
+      <Images>
+        <Image
+          src={images?.[0] ?? "/images/fallback.svg"}
+          alt={`image for product ${title}`}
+        />
+        <Image
+          src={"/images/fallback.svg"}
+          alt={`${brand} logo for product ${title}`}
+        />
+      </Images>
+
       <Features features={features} />
       <PriceDisplay nowPrice={price} discountPercentage={discountPercentage} />
       <StockDisplay stock={stock} />
