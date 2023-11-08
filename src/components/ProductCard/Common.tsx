@@ -8,7 +8,7 @@ export const Title = styled.span`
   font-family: var(--title-font-family);
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
 `;
 
